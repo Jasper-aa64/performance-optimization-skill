@@ -185,6 +185,9 @@ reasoning effort; total budget and candidate cap, with the final re-measure
 reserved; allowed changes; the screening and confirmation rules; and the stop
 rule - budget spent, N consecutive candidates without a landing, or the landed
 version within an agreed distance of the larger floor, whichever comes first.
+The floor condition applies only when the allowed changes keep the layout, the
+bytes touched and the cores the floors were measured on; changes outside that
+can go below the floors, so with them the stop rule uses budget and N alone.
 Inside that authorization, do not stop to ask; report at the end.
 
 Before opening, check that the measurement entry can take a landed version as

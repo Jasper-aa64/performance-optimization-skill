@@ -16,7 +16,10 @@ Written into the ledger verbatim before the first run, never rewritten:
   threshold), the same for every candidate of the line;
 - the stop rule: budget spent, N consecutive candidates without a landing, or
   the landed version within an agreed distance of the larger floor
-  ([two floors](floors.md)), whichever comes first.
+  ([two floors](floors.md)), whichever comes first. The floor condition is
+  allowed only when the allowed changes keep the layout, the bytes touched and
+  the cores the floors were measured on; if the line may change any of them, the
+  stop rule is budget and N alone.
 
 A later change from the user is appended with its date and source and applies
 only to candidates opened after it; it never relabels earlier results.
@@ -29,10 +32,12 @@ contract:
 - `ledger.md`, rewritten after every step: the authorization and the contract;
   the measurement-entry acceptance (A/A noise, the known error the correctness
   gate caught); the floors of each landed version (how built, build hash, value,
-  interval); the landed chain (k, version hash, candidate, confirmed change
-  against k-1 with its interval); budget spent and left by stage (acceptance,
-  floors, screening, confirmation, final reserve); and one line naming the next
-  step and the version it applies to.
+  interval), with a short A/A of that version from the same session and the
+  smallest change the confirmation rule can resolve at its speed, so a later
+  "unconfirmed" can be read against it; the landed chain (k, version hash,
+  candidate, confirmed change against k-1 with its interval); budget spent and
+  left by stage (acceptance, floors, screening, confirmation, final reserve);
+  and one line naming the next step and the version it applies to.
 - `candidates.tsv`, one row per candidate, appended: id, base version,
   hypothesis, card, patch SHA, correctness, screening result, confirmation
   result, verdict, cost, evidence path.
