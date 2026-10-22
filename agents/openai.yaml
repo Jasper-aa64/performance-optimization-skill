@@ -1,0 +1,4 @@
+interface:
+  display_name: "性能优化"
+  short_description: "诊断性能瓶颈、生成有界补丁，调用现有 harness 评测并交付证据"
+  default_prompt: "使用 $performance-optimization 检查这个项目和现有 harness，按我的请求开展诊断、优化或补丁评测；先明确预算，生成补丁前确认模型与推理强度。"
