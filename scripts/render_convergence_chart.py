@@ -3,8 +3,7 @@
 
 The chart is intentionally dependency-free so it works on clean Windows and
 remote Linux hosts without matplotlib. It emits SVG using the visual contract in
-``references/convergence.md`` (copied from HFT-wf, whose ``收敛图规范.md`` holds
-the original rules and examples).
+``references/convergence.md``.
 """
 
 from __future__ import annotations

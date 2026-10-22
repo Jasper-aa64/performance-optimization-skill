@@ -82,17 +82,12 @@ so route through the lookup rather than to individual cards.
 2. Locate the actual runner, evaluator, configuration, correctness checks and
    evidence schema. Inspect code before invoking an unfamiliar entrypoint:
    `--dry-run` can write synthetic results and `--help` need not be side-effect-free.
-3. For HFT-wf, read [the adapter](adapters/hft-wf/README.md). Its inventory helper
-   reads local files and Git metadata without importing or running harness code:
-
-   ```text
-   python <skill-root>/adapters/hft-wf/inspect_harness.py --root <absolute-HFT-wf-root>
-   ```
-
-   Exit 0 means the requested local inventory succeeded, NOT that execution,
-   remote readiness, provenance or promotion is approved. Resolve relative paths
-   in the output against `root`. Other projects need their own observed adapter;
-   do not force them through HFT-wf defaults.
+3. Read the project's own adapter if it has one: the note, usually linked from
+   its AGENTS.md, that lists the harness entrypoints and their boundaries, locks,
+   verdict labels and known traps, sometimes with a read-only inventory helper.
+   A clean inventory or green helper means the local files were read, not that
+   execution, remote readiness, provenance or promotion is approved. Without an
+   adapter, inventory the entrypoints read-only from their source.
 
 ## Project adaptation boundary
 
@@ -110,12 +105,11 @@ make the correctness criterion catch a known error; and keep the raw records
 complete with correct units. A failed acceptance is handled as "measurement
 itself unreliable".
 
-HFT-wf keeps its own adapter (read it for HFT-wf work) with its own commands,
-thresholds and verdict labels. Do not force another project - a different
-service, language or repository - through HFT-wf commands, historical budgets
-or class_a/class_b labels. Other projects use their actual schema and their
-own observed adapter; without an adapter, stop before execution and state the
-gap, while read-only diagnosis may continue.
+Each project's adapter carries its own commands, thresholds and verdict labels.
+Do not carry one project's commands, historical budgets or labels into another
+- a different service, language or repository. Use the project's actual schema;
+without an adapter, stop before execution and state the gap, while read-only
+diagnosis may continue.
 
 ## Establish the experiment contract
 
@@ -175,14 +169,14 @@ the budget.
 Keep separate: raw verdict; stage and observed sample count; correctness and
 infrastructure validity; evidence-only status; current promotion authority; user
 authorization to commit, merge, push or open a PR. Never infer a terminal state
-from missing m12 or a completed timing process. Unknown states remain unknown and
-require schema review; they are not rejection, success or a zero denominator row.
+from a missing final stage or a completed timing process. Unknown states remain
+unknown and require schema review; they are not rejection, success or a zero
+denominator row.
 
-For HFT-wf performance evaluation, use the performance-gated class_b path.
-Historical class_a promotions remain recorded but outside class_b claims; do not
-reroute a performance patch through a correctness-only bypass. A noisy single-run
-signal is not promotion. dd_lin1 is not a production authority. Other projects
-use their actual schema; do not invent class_a/class_b labels for them.
+Performance claims go through the project's performance-gated path; do not
+reroute a performance patch through a correctness-only bypass. A noisy
+single-run signal is not promotion. Research artifacts are not production
+authorities. Use the project's actual verdict labels; do not invent new ones.
 
 Stop on the agreed budget, invalid evidence, scope violation, correctness failure,
 or an unresolved/noisy result that requires a separately authorized retry. Do not

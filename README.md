@@ -55,7 +55,6 @@ agents/openai.yaml                    Codex display metadata
 references/evidence.md                what evidence to gather, how to record a candidate, how to read uncertainty
 references/convergence.md             rules for the final convergence chart
 scripts/render_convergence_chart.py   dependency-free SVG renderer for that chart, with tests
-adapters/hft-wf/                      everything specific to the HFT-wf harness, with an inventory helper and tests
 ```
 
 ## Install
@@ -67,11 +66,11 @@ adapters/hft-wf/                      everything specific to the HFT-wf harness,
 
 ## Adapters
 
-The core is project-agnostic. A project with its own harness gets
-`adapters/<project>/`, describing its entrypoints, metric, correctness gate,
-locks and verdict labels. Without an adapter the agent may still diagnose
-read-only, but stops before execution and states the gap. HFT-wf is the only
-adapter so far.
+The skill is project-agnostic. A project with its own harness keeps an adapter
+note in its own repository, usually linked from its AGENTS.md, describing its
+entrypoints, metric, correctness gate, locks and verdict labels. Without one the
+agent may still diagnose read-only, but stops before execution and states the
+gap.
 
 ## Related
 
@@ -92,7 +91,6 @@ adapter so far.
 ## Tests
 
 ```text
-python -B -m unittest discover -s adapters/hft-wf -v
 python -B -m unittest discover -s scripts -v
 ```
 
@@ -133,7 +131,6 @@ agents/openai.yaml                    Codex 里显示的名字和默认提示
 references/evidence.md                要收集哪些证据、候选怎么登记、不确定性怎么读
 references/convergence.md             最终收敛图的规矩
 scripts/render_convergence_chart.py   不依赖第三方库的收敛图出图脚本，带测试
-adapters/hft-wf/                      HFT-wf 专用的东西：适配说明、只读盘点脚本和测试
 ```
 
 ### 安装
@@ -143,7 +140,7 @@ adapters/hft-wf/                      HFT-wf 专用的东西：适配说明、�
 
 ### 适配器
 
-核心部分不绑项目。有自己 harness 的项目，在 `adapters/<项目>/` 里写清入口、指标、正确性门、锁和结论标签；没有适配器时，agent 可以只读诊断，但执行前会停下来说明缺什么。目前只有 HFT-wf 一个适配器。
+skill 本身不绑项目。有自己 harness 的项目，在自己的仓库里放一份适配说明（一般从它的 AGENTS.md 链过去），写清入口、指标、正确性门、锁和结论标签；没有的话，agent 可以只读诊断，但执行前会停下来说明缺什么。
 
 ### 相关链接
 
@@ -161,6 +158,5 @@ adapters/hft-wf/                      HFT-wf 专用的东西：适配说明、�
 ### 测试
 
 ```text
-python -B -m unittest discover -s adapters/hft-wf -v
 python -B -m unittest discover -s scripts -v
 ```

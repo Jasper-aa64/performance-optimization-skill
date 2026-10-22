@@ -65,7 +65,7 @@ python <skill-root>/scripts/render_convergence_chart.py \
   --footer "<environment> · <gate>"
 ```
 
-Feed it landed points only. `--safe-only` applies HFT-wf's TWAP columns
-(`status=PASS`, `lost=0`, `unknown_pushes=0`); other projects filter their TSV
-before rendering. `--filter key=value` keeps matching rows; `--remap-x` numbers
+Feed it landed points only. `--safe-only` keeps rows with `status=PASS`,
+`lost=0` and `unknown_pushes=0` (columns of a message-push harness); for other
+TSVs, filter before rendering. `--filter key=value` keeps matching rows; `--remap-x` numbers
 the kept rows 0..N-1; `--zero-min` starts the Y axis at zero.
