@@ -41,7 +41,8 @@ a fixed sequence that forces every task to run every profiler.
 
 ## Candidate record
 
-Record project/commit, actual patch hash, target/workload/build identity, hypothesis,
+Record project/commit, actual patch hash, the base version it was built on and
+measured against, target/workload/build identity, hypothesis,
 allowed changes, generation provenance if applicable, metric contract, policy
 source/version, ordered arm plan, correctness result, raw samples, actual costs,
 deviations and output paths. Preserve unknown historical compiler/model values.

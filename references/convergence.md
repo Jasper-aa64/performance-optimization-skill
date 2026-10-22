@@ -4,7 +4,10 @@ Draw this once, at the end of an optimization line, when the developer and the
 agent agree the line has converged: the stop condition is reached (agreed budget
 spent, resolution exhausted, or no remaining hotspot worth a candidate), and
 correctness plus a final representative re-measure of the last safe baseline
-pass. During exploration keep ledgers and internal diagnostic charts only, and
+pass. In a continuous line the stop rule written into the opening authorization
+is that agreement, given ahead of time, and the final re-measure covers every
+landed version together ([the continuous-line rules](continuous-line.md)).
+During exploration keep ledgers and internal diagnostic charts only, and
 label any dated intermediate chart as a draft. The final chart and report keep a
 stable file name and are overwritten, not versioned by date.
 
@@ -13,6 +16,8 @@ stable file name and are overwritten, not versioned by date.
 - Point 0 is the baseline before the line started.
 - Point k is the safe baseline after the k-th landed optimization: a candidate
   that passed correctness and was confirmed on fresh data under the contract.
+  In a continuous line it was confirmed against point k-1, the version it was
+  built on.
 - Everything else stays off the line and goes in a table under the chart
   (candidate, result, handling): rejected, unconfirmed or noisy, pending,
   build-only, synthetic or dry-run, correctness not closed, failed on
