@@ -104,9 +104,12 @@ number from another project.
 A new measurement entry must pass acceptance before its numbers support any
 conclusion: run the same build as both arms repeatedly and check the noise
 level with no systematic arm difference; make the state reset reproducible;
-make the correctness criterion catch a known error; and keep the raw records
-complete with correct units. A failed acceptance is handled as "measurement
-itself unreliable".
+make the correctness criterion catch known errors of the kinds the allowed
+changes risk - a lost or duplicated update, a reordered floating-point
+accumulation - and check that it covers every output the contract names; and
+keep the raw records complete with correct units. A property the criterion
+cannot see is recorded as a gap and checked by reading each landed patch. A
+failed acceptance is handled as "measurement itself unreliable".
 
 Each project's adapter carries its own commands, thresholds and verdict labels.
 Do not carry one project's commands, historical budgets or labels into
@@ -190,6 +193,16 @@ bytes touched and the cores the floors were measured on; changes outside that
 can go below the floors, so with them the stop rule uses budget and N alone.
 Inside that authorization, do not stop to ask; report at the end.
 
+N counts hypotheses, not patches: variants of one idea screened together, such
+as a sweep of one parameter, count once. A candidate that loses closes its
+implementation, not its direction. Before the ledger marks a direction closed,
+break the loss down with an instrument (stage probes or a floor, see
+[the two floors](references/floors.md)) and name the cost that sank it: a cost
+the direction cannot avoid (a handoff latency, the bytes it must move) closes
+it; a cost this implementation added (an extra pass, a check another split
+would not need) leaves it open for another form. The ledger keeps the
+directions by cost type with their state.
+
 Before opening, check that the measurement entry can take a landed version as
 its baseline arm. If it can only compare a fixed original with a patch, the
 request falls back to an ordinary optimize run and the gap is stated.
@@ -243,8 +256,9 @@ condition is reached and correctness plus a final representative re-measure
 pass - draw the final chart per [the convergence chart rules](references/convergence.md).
 In a continuous line the stop rule in the opening authorization is that
 agreement, given ahead of time: when it fires, re-measure and draw without
-waiting, and report which condition fired and how far the last landed version
-is from its floors - never that nothing is left. Only landed, confirmed
+waiting, and report which condition fired, how far the last landed version is
+from its floors and on which design those floors were measured, and which
+directions are still open - never that nothing is left. Only landed, confirmed
 optimizations become points; every other candidate goes in the table under the
 chart.
 

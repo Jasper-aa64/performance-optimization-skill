@@ -19,7 +19,11 @@ Written into the ledger verbatim before the first run, never rewritten:
   ([two floors](floors.md)), whichever comes first. The floor condition is
   allowed only when the allowed changes keep the layout, the bytes touched and
   the cores the floors were measured on; if the line may change any of them, the
-  stop rule is budget and N alone.
+  stop rule is budget and N alone. N counts hypotheses: variants of one idea
+  screened together count once. Say whether the candidate cap counts
+  hypotheses or patches, and size the cap and N against the cost of one
+  candidate on this host, so that as far as can be foreseen the budget, not a
+  count, ends the line.
 
 A later change from the user is appended with its date and source and applies
 only to candidates opened after it; it never relabels earlier results.
@@ -37,6 +41,10 @@ contract:
   "unconfirmed" can be read against it; the landed chain (k, version hash,
   candidate, confirmed change against k-1 with its interval); budget spent and
   left by stage (acceptance, floors, screening, confirmation, final reserve);
+  the directions, grouped by cost type (work that can be removed,
+  computation, waiting for data, synchronization and handoff, more cores where
+  allowed): for each, the candidates tried and its state - untried, open, or
+  closed by a measured cost of the direction itself, with that measurement;
   and one line naming the next step and the version it applies to.
 - `candidates.tsv`, one row per candidate, appended: id, base version,
   hypothesis, card, patch SHA, correctness, screening result, confirmation
@@ -71,4 +79,5 @@ different sessions are never joined into one line. A landed version that does
 not beat its predecessor in this re-measure stays on the chart and is reported,
 since a regression between landed points is never hidden. The report names the
 stop condition that fired, the landed chain, the distance from the floors, the
-candidate table and the budget used.
+candidate table, the budget used and the directions still open. A count that
+fired with most of the budget unspent is said so in plain words.
